@@ -1,0 +1,76 @@
+=head1 NAME
+
+DBIx::Class::QueryProfiler - DBIx::Class profiler
+
+=head1 DESCRIPTION
+
+Profiler for DBIx::Class. Also it provides more usable output or queries.
+
+=head1 SYNOPSYS
+
+In order to start using just declare in your schema the code
+
+    use DBIx::Class::QueryProfiler;
+
+    sub connection {
+        my $self = shift;
+        my $response = $self->next::method(@_);
+        $response->storage->auto_savepoint(1);
+        $response->storage->debug(1);
+        $response->storage->debugobj(DBIx::Class::QueryProfiler->new);
+        return $response;
+    }
+
+Possible to use debugfh () to select right output debuging filehandle
+
+    $response->storage->debugfh(IO::File->new('/tmp/trace.out', 'w'));
+
+or it can be set through an environment variable DBIC_TRACE
+
+    export DBIC_TRACE="1=/tmp/trace.out"
+
+=head1 METHODS
+
+
+=cut
+
+=head2 query_start
+
+Called before a query is executed. The first argument is the SQL string being executed and subsequent arguments are the parameters used for the query.
+
+
+=cut
+
+=head2 query_end
+
+Called when a query finishes executing. Has the same arguments as query_start.
+
+
+=cut
+
+=head2 print
+
+Prints the specified string to our debugging filehandle, which we will attempt to open if we haven't yet.
+
+
+=cut
+
+=head1 BUGS
+
+No bugs. Found? Report please :-)
+
+=head1 AUTHORS
+
+Andrey Kostenko <andrey@kostenko.name>, Mons Anderson <mons@cpan.org>
+
+=head1 COMPANY
+
+Rambler Internet Holding
+
+=head1 CREATED
+
+15.04.2009 19:28:45 MSD
+
+
+=cut
+
