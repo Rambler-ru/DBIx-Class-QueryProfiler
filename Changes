@@ -1,0 +1,9 @@
+Revision history for DBIx-Class-QueryProfiler
+
+0.03    Thu 28 Jan 2010 11:50:25 MSK
+        POD improvements
+0.02    Thu  7 Jan 2010 00:10:05 MSK
+        Added patch for debugfh support
+0.01    Fri 25 Dec 2009 01:31:58 MSK
+        Initial version
+
