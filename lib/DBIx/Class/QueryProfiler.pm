@@ -51,7 +51,7 @@ use IO::File;
 __PACKAGE__->mk_group_accessors('simple' => qw/is_colored/);
 
 our $start;
-our $VERSION = 0.03;
+our $VERSION = 0.05;
 our $N = 0;
 our %Q;
 our $fh;
@@ -132,7 +132,7 @@ sub print {
 
     # by default is colored output
     $self->is_colored(1);
-    if (!defined ($self->debugfh())) {
+    if (-t $self->debugfh()) {
         # Check if we can get trace filename via ENV
         my $debug_env = $ENV{DBIC_TRACE} || undef;
         if (defined($debug_env) && ($debug_env =~ /=(.+)$/)) {
